@@ -1,7 +1,7 @@
 app.factory('operationService', function($http) {
   return {
     post: function(url, info) {
-      return $http.post('api/' + url, info)
+      return $http.post('/licenta/api/' + url, info)
       .then(function(data) {
         console.log(url + ' Success!');
         return data.data;
@@ -12,7 +12,7 @@ app.factory('operationService', function($http) {
       })
     },
     get: function(url) {
-      return $http.get('api/' + url)
+      return $http.get('/licenta/api/' + url)
       .then(function(data) {
         console.log(url + ' Success!');
         return data.data;
