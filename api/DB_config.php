@@ -1,10 +1,10 @@
 <?php
 require_once '../vendor/autoload.php';
 date_default_timezone_set('Europe/Bucharest');
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "licenta";
+$servername = "sql7.freemysqlhosting.net";
+$username = "sql7253038";
+$password = "ZcSfyT15rB";
+$dbname = "sql7253038";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
