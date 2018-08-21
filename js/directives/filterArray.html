@@ -1,0 +1,17 @@
+<button type="button" ng-init="showFilter = false" ng-click="showFilter = !showFilter; filterData = {};" class="col-12 btn btn-primary btn-sm">{{action}}</button>
+<div class="row p-3 text-center" ng-show="showFilter">
+  <div class="col">
+    <label class="font-weight-bold">{{action}} by Column:</label>
+    <select ng-model="filterData.column" ng-options="x as columnLabels[index] for (index, x) in columns">
+      <option value="" disabled selected>Choose column...</option>
+    </select>
+  </div>
+  <div class="col" ng-show="{{content}}">
+    <label class="font-weight-bold">Content:</label>
+    <input ng-disabled="!filterData.column" ng-model="filterData.content"></input>
+  </div>
+  <div class="col" ng-show="{{order}}">
+    <button ng-disabled="!filterData.column || !filterData.reverse" ng-model="filterData.reverse" class="btn btn-sm btn-primary" ng-click="filterData.reverse=false">Asc</button>
+    <button ng-disabled="!filterData.column || filterData.reverse" ng-model="filterData.reverse" class="btn btn-sm btn-primary" ng-click="filterData.reverse=true">Desc</button>
+  </div>
+</div>

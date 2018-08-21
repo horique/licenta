@@ -1,0 +1,41 @@
+<div class="card" ng-form="commentAddForm">
+  <div class="card-header">
+    <div>
+      <label class="font-weight-bold">{{commentHeaders[0].label}}:</label>
+      <select ng-model="commentModel.room_name" class="col-12" ng-options="x for x in commentHeaders[0].lov" ng-change="lookUp(1, commentModel)">
+        <option value="" disabled selected>Select room name</option>
+      </select>
+    </div>
+    <div ng-show="commentHeaders[1].lov">
+      <label class="font-weight-bold">{{commentHeaders[1].label}}:</label>
+      <select ng-model="commentModel.equipment_name" class="col-12" ng-options="x for x in commentHeaders[1].lov" ng-change="lookUp(2, commentModel)">
+        <option value="" disabled selected>Select equipment name</option>
+      </select>
+    </div>
+    <div ng-show="commentHeaders[2].lov">
+      <label class="font-weight-bold">{{commentHeaders[2].label}}:</label>
+      <select ng-model="commentModel.equipment_unit_id" class="col-12" ng-options="x for x in commentHeaders[2].lov" required>
+        <option value="" disabled selected>Select equipment id</option>
+      </select>
+    </div>
+  </div>
+  <div class="card-body">
+    <div>
+      <label class="font-weight-bold">{{commentHeaders[3].label}}:</label>
+      <select ng-model="commentModel.responsible" class="col-12" ng-options="x for x in commentHeaders[3].lov" required>
+        <option value="" disabled selected>Select personnel responsible</option>
+      </select>
+    </div>
+    <div>
+      <label class="font-weight-bold">{{commentHeaders[4].label}}:</label>
+      <input ng-model="commentModel.status" class="col-12" placeholder="Please enter status" required>
+    </div>
+    <div>
+      <label class="font-weight-bold">{{commentHeaders[6].label}}:</label>
+      <textarea ng-model="commentModel.message" rows="5" class="col-12" maxlength="1000" placeholder="Please enter message (up to 1000 chars)" required></textarea>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button ng-disabled="commentAddForm.$invalid" ng-click="addComment(commentModel)" class="col-4 offset-4 btn btn-success btn-lg">Post</button>
+  </div>
+</div>

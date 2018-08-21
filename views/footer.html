@@ -1,0 +1,5 @@
+<footer class="text-center text-light bg-dark">
+  <span ng-if="currentUser.username">Logged in as {{currentUser.username}}</span>
+  <span ng-if="currentUser.username === false">Logged out</span>
+  <button ng-click="topFunction()" class="col-1" id="topBtn"><i class="fas fa-long-arrow-alt-up"></i></button>
+</footer>

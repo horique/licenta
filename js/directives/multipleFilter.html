@@ -1,0 +1,25 @@
+<div class="row py-3 m-0 text-center border-bottom" ng-repeat="filter in filterData.filterList">
+  <div class="col-5 float-left">
+    <label class="font-weight-bold">Column:</label>
+    <input readonly value="{{filter.column}}"></input>
+  </div>
+  <div class="col-5 float-left">
+    <label class="font-weight-bold">Content:</label>
+    <input readonly value="{{filter.content}}"></input>
+  </div>
+  <button class="col-1 btn btn-sm btn-danger rounded" ng-click="removeFilter($index, filter.column)"><i class="fas fa-minus-circle"></i></i></button>
+</div>
+<h6 class="py-1">Add Filter</h6>
+<div class="row py-3 m-0 text-center">
+  <div class="col-5 float-left">
+    <label class="font-weight-bold">Column:</label>
+    <select ng-model="filterData.column" ng-options="x as labels[lov.indexOf(x)] for x in (lov | filter: '')">
+      <option value="" disabled selected>Choose column...</option>
+    </select>
+  </div>
+  <div class="col-5 float-left">
+    <label class="font-weight-bold">Content:</label>
+    <input ng-disabled="!filterData.column" ng-model="filterData.content"></input>
+  </div>
+  <button ng-disabled="!filterData.content || (filterData.filterList.length === columns.length)" class="col-1 btn btn-sm btn-primary rounded" ng-click="addFilter()"><i class="fas fa-search-plus"></i></button>
+</div>

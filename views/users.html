@@ -1,0 +1,8 @@
+<div ng-if="users" class="container-fluid">
+  <h2>Users</h2>
+  <table-directive headers="usersHeaders" labels="usersLabels" info="users" delete="delete(info)" update="update(info)"></table-directive>
+  <div>
+    <button type="button" ng-init="showAdd = false" ng-click="showAdd = !showAdd" class="col-12 btn btn-success btn-sm">Add User</button>
+    <register-directive ng-show="showAdd" register="register(info, form, error)"></register-directive>
+  </div>
+</div>

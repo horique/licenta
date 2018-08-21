@@ -1,0 +1,40 @@
+<nav ng-controller="NavbarController" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li>
+          <a class="navbar-brand" href="#!/"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li ng-if="currentUser.roles && currentUser.roles.indexOf('administrator') !== -1" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage page</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" ng-href="{{page.url}}" ng-repeat="page in pages">{{page.name}}</a>
+          </div>
+        </li>
+        <li ng-if="currentUser.roles && currentUser.roles.indexOf('report_supervisor') !== -1">
+          <a class="nav-link" href="#!/generate_report"></i> Generate Reports</a>
+        </li>
+        <li ng-if="currentUser.username">
+          <a class="nav-link" href="#!/comment_section"></i> Comment Section</a>
+        </li>
+        <li ng-if="currentUser.username">
+          <a class="nav-link" href="#!/display_reports"></i> View Reports</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-if="currentUser.username === false">
+          <a class="nav-link" href="#!/register"><i class="fas fa-user"></i> Sign Up</a>
+        </li>
+        <li ng-if="currentUser.username === false">
+          <a class="nav-link" href="#!/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+        </li>
+        <li ng-if="currentUser.username">
+          <a class="nav-link" href="#!/account_options"><i class="fas fa-cog"></i> Account</a>
+        </li>
+        <li ng-if="currentUser.username">
+          <a class="nav-link" href="#!/login"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

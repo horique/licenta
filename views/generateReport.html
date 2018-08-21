@@ -1,0 +1,31 @@
+<div class="container" ng-init="showFilter = false">
+  <h2>Generate Report</h2>
+  <div class="card">
+    <div class="card-header">
+      <label>Select a table:</label>
+      <select ng-model="model.tableName" class="col-12" ng-change="fetchTable((tableList | filter: {tableName: model.tableName})[0].pathToApi); check = {}; model.columnList = []; showFilter=false; filterData = {};" ng-options="x.tableName as x.label for x in tableList">
+        <option value="" disabled selected>View tables...</option>
+      </select>
+    </div>
+    <div class="card-body" ng-if="model.tableName">
+      <label>Select columns from {{model.tableName | convertToReadable }}:</label>
+      <div ng-repeat="header in (tableList | filter: {tableName: model.tableName})[0].columnLabels">
+        <input type="checkbox" autocomplete="off" ng-model="check[$index]" ng-click="checkValue((tableList | filter: {tableName: model.tableName})[0].tableColumns[$index])"> {{header}}</input>
+      </div>
+    </div>
+    <div ng-show="model.tableName">
+      <button type="button" ng-click="showFilter = !showFilter; filterData = {};" class="col-12 btn btn-primary btn-sm">Filter</button>
+      <multiple-filter-directive ng-if="showFilter" columns="(tableList | filter: {tableName: model.tableName})[0].tableColumns" column-labels="(tableList | filter: {tableName: model.tableName})[0].columnLabels" filter-data="filterData"></multiple-filter-directive>
+    </div>
+    <div class="card-footer text-center">
+      <button ng-disabled="!model.columnList || model.columnList.length < 1" ng-click="viewPDF()" class="col-3 btn btn-primary btn-sm">View Report</button>
+      <button ng-disabled="!model.columnList || model.columnList.length < 1" ng-click="generatePDF()" class="col-3 btn btn-primary btn-sm">Generate Report</button>
+    </div>
+    <span class="text-center" ng-if="loading">
+      <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      {{loading}}
+    </span>
+  </div>
+</div>
+<div ng-include="'views/pdfReport.html'">
+</div>

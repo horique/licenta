@@ -1,0 +1,41 @@
+<h2>Account Options</h2>
+<form class="col-10 offset-1 p-3 border border-light" name="updateForm" ng-submit="update(user)">
+  <div class="form-row">
+    <div class="form-group col">
+      <label>First Name</label>
+      <input ng-model="user.firstname" name="firstname" type="text" class="form-control" required></input>
+      <span ng-show="updateForm.firstname.$dirty && updateForm.firstname.$error.required" class="text-danger">First name is required</span>
+    </div>
+    <div class="form-group col">
+      <label>Last Name</label>
+      <input ng-model="user.surname" name="surname" type="text" class="form-control" placeholder="Last Name" required></input>
+      <span ng-show="updateForm.surname.$dirty && updateForm.surname.$error.required" class="text-danger">Last Name is required</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-6">
+      <label>Username</label>
+      <input ng-model="user.username" name="username" type="text" class="form-control" placeholder="Username" required></input>
+      <span ng-show="updateForm.username.$dirty && updateForm.username.$error.required" class="text-danger">Username is required</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <label>New Password</label>
+      <input ng-model="user.password" name="password" type="password" class="form-control" placeholder="New Password"></input>
+    </div>
+    <div class="form-group col">
+      <label>Re-Enter Password</label>
+      <input ng-disabled="!user.password" ng-model="user.confirmPassword" name="confirmPassword" type="password" class="form-control" placeholder="Confirm Password" ng-required="user.password"></input>
+      <span ng-show="user.password && (user.password !== user.confirmPassword)" class="text-danger">Passwords must match!</span>
+    </div>
+  </div>
+  <button ng-disabled="(updateForm.$invalid || updateForm.$pristine) || (user.password !== user.confirmPassword)" type="submit" class="col-2 offset-4 btn btn-primary">Update</button>
+  <button type="button" class="col-2 btn btn-danger" ng-click="delete(user)">Delete</button>
+  <div class="text-danger text-center" ng-show="error">
+    <span>Username already exists!</span>
+  </div>
+  <div class="text-success text-center" ng-show="success">
+    <span>Account successfully updated!</span>
+  </div>
+</form>

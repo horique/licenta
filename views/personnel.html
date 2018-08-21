@@ -1,0 +1,4 @@
+<div ng-if="personnel && personnelHeaders[0].lov" class="container-fluid">
+  <h2>Personnel</h2>
+  <table-directive headers="personnelHeaders" labels="personnelLabels" info="personnel" insert="insert(info)" delete="delete(info)" update="update(info)"></table-directive>
+</div>

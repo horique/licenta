@@ -1,0 +1,9 @@
+<div class="card container border-dark" ng-if="commentHeaders[0].lov">
+  <h2>Comment Section</h2>
+  <div class="row btn-group card-header">
+    <button ng-disabled="pageActive==='views/commentAdd.html'" ng-click="pageActive='views/commentAdd.html'" class="col-6 btn btn-primary btn-lg">Add comment</button>
+    <button ng-disabled="pageActive==='views/commentDisplay.html'" ng-click="pageActive='views/commentDisplay.html'; fetchCommentList()" class="col-6 btn btn-primary btn-lg">Display comments</button>
+  </div>
+  <div ng-include="pageActive" class="card-body">
+  </div>
+</div>

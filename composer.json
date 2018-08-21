@@ -1,0 +1,9 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "pdfshift/pdfshift-php": "^1.0",
+        "firebase/php-jwt": "dev-master",
+        "zendframework/zend-config": "~2.3",
+        "zendframework/zend-http": "~2.3"
+    }
+}

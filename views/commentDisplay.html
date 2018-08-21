@@ -1,0 +1,22 @@
+<div ng-if="commentList && commentHeaders[0].lov && commentHeaders[3].lov" class="container">
+  <div>
+    <filter-array-directive action="Filter" order="false" content="true" column-labels="columnLabels" columns="columnNames" filter-data="filterData"></filter-array-directive>
+  </div>
+  <div class="card border-dark" ng-repeat="comment in commentList | filter: {[filterData.column]:filterData.content} | orderBy: filterData.column: filterData.reverse">
+    <div class="card-header">
+      <span class="float-right">Added by: {{comment.added_by}}</span>
+      <h5 class="card-subtitle">Equipment Name: {{comment.equipment_name}}</h5>
+      <h5 class="card-subtitle">Room Name: {{comment.room_name}}</h5>
+      <h5 class="card-subtitle">Responsible: {{comment.responsible}}</h5>
+      <h5 class="card-subtitle">Status: {{comment.status}}</h5>
+    </div>
+    <div class="card-body">
+      <h6 class="card-title">Message:</h6>
+      <textarea readonly class="col-12" rows="5">{{comment.message}}</textarea>
+    </div>
+    <div class="card-footer">
+      <span>Entry ID: {{comment.id}}</span>
+      <span>Entry date: {{comment.date_added | date:'medium'}}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div>
+  <filter-array-directive action="Filter" order="false" content="true" column-labels="headers.columnNames" columns="labels" filter-data="filterData"></filter-array-directive>
+</div>
+<table class="table table-sm table-bordered">
+  <!-- Display table column headers -->
+  <tr>
+    <th ng-repeat="header in headers" ng-click="changeOrder(labels[$index])">
+      <span>{{ header.header }}</span>
+      <!-- Toggle ascending/ descending arrow on clicking column header -->
+      <span class="sortorder" ng-show="sortBy===labels[$index]" ng-class="{reverse: reverse}"></span>
+    </th>
+    <th ng-show="updateBtn">Update</th>
+    <th ng-show="deleteBtn">Delete</th>
+  </tr>
+  <!-- Display cell info from database -->
+  <tr ng-form="updateDataForm" ng-repeat="item in info | filter:{[filterData.column]:filterData.content} | orderBy:sortBy:reverse">
+    <td ng-repeat="header in headers">
+      <!-- Displays a dropdown select if column is foreing key else dispalys an input -->
+      <field-directive field-type="{{header.fieldType}}" item="item" label="{{labels[$index]}}" lov="header.lov"></field-directive>
+    </td>
+    <!-- Displays update and delete button if chosen -->
+    <td class="col-xs-1" ng-show="updateBtn">
+      <button ng-disabled="updateDataForm.$invalid" ng-click="update({info: item})" class="col-12 btn btn-primary btn-sm"><i class="fas fa-long-arrow-alt-up"></i></button>
+    </td>
+    <td class="col-xs-1" ng-show="deleteBtn">
+      <button ng-click="delete({info: item})" class="col-12 btn btn-danger btn-sm"><i class="fas fa-times"></i></button>
+    </td>
+  </tr>
+  <!-- Toggle add item form on or off -->
+  <tbody ng-show="insertBtn">
+    <tr>
+      <td colspan="{{headers.length + updateBtn + deleteBtn}}">
+        <button type="button" ng-init="showAdd = false" ng-click="showAdd = !showAdd" class="col-12 btn btn-success btn-sm">Add Item</button>
+      </td>
+    </tr>
+    <tr ng-show="showAdd">
+      <th ng-repeat="header in headers">
+        <span>{{ header.header }}</span>
+      </th>
+      <th colspan="{{ updateBtn + deleteBtn }}">Add</th>
+    </tr>
+    <!-- Add item form -->
+    <tr ng-form="addDataForm" ng-show="showAdd">
+      <td ng-repeat="header in headers">
+        <!--  Displays a dropdown select if column is foreing key else dispalys an input -->
+        <field-directive field-type="{{header.fieldType}}" item="dataToAdd" label="{{labels[$index]}}" lov="header.lov" form="addDataForm"></field-directive>
+      </td>
+      <td colspan="{{ updateBtn + deleteBtn }}">
+        <button ng-disabled="addDataForm.$invalid" ng-click="insert({info: dataToAdd})" class="col-12 btn btn-success btn-sm"><i class="fas fa-plus"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

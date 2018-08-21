@@ -1,0 +1,23 @@
+<div ng-switch="fieldType">
+  <div ng-switch-when="input">
+    <input ng-model="item[label]" class="col-12" required></input>
+  </div>
+  <div ng-switch-when="selector">
+    <select ng-model="item[label]" class="col-12" ng-options="x for x in lov" required>
+      <option value="" disabled selected>View current values...</option>
+    </select>
+  </div>
+  <div ng-switch-when="auto">
+    <input disabled ng-model="item[label]" class="col-12"></input>
+  </div>
+  <div ng-switch-when="date">
+    <!-- <input ng-model="item[label]" class="col-12"></input> -->
+    <!-- Browser-specific date picker -->
+    <input ng-model="item[label]" type="datetime-local"></input>
+  </div>
+  <div ng-switch-when="filter">
+    <select ng-model="item[label]" class="col-12" ng-options="index as x[label] for (index, x) in lov">
+      <option value="" disabled selected>Choose column...</option>
+    </select>
+  </div>
+</div>

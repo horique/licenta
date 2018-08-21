@@ -1,0 +1,36 @@
+<div ng-if="reports" class="container">
+  <h2>Display Reports</h2>
+  <div class="border rounded">
+    <filter-array-directive action="Filter" order="false" content="true" column-labels="reportHeaders" columns="reportColumns" filter-data="filterData"></filter-array-directive>
+  </div>
+  <table class="table table-bordered table-sm table-hover">
+    <thead>
+      <th ng-repeat="header in reportHeaders" ng-click="changeOrder(reportColumns[$index])">
+        {{header}}
+        <span class="sortorder" ng-show="sortBy===reportColumns[$index]" ng-class="{reverse: reverse}"></span>
+      </th>
+      <th>View</th>
+      <th>Download</th>
+      <!-- Delete button is enabled only if supervisor user is logged in -->
+      <th ng-if="currentUser.roles && currentUser.roles.indexOf('report_supervisor') !== -1">Delete</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="report in reports | filter:{[filterData.column]:filterData.content} | orderBy:sortBy:reverse">
+        <td ng-repeat="column in reportColumns">
+          <span ng-if="column==='table_name'">{{report[column] | convertToReadable}}</span>
+          <span ng-if="column!=='table_name'">{{report[column]}}</span>
+        </td>
+        <td>
+          <button type="button" ng-click="viewPDF($index)" class="col-12 btn btn-info"><i class="fas fa-eye"></i></button>
+        </td>
+        <td>
+          <a ng-href="api/downloadPDF.php?file={{report.file_name}}" download role="button" class="col-12 btn btn-dark"><i class="fas fa-download"></i></a>
+        </td>
+        <!-- Delete button is enabled only if supervisor user is logged in -->
+        <td ng-if="currentUser.roles && currentUser.roles.indexOf('report_supervisor') !== -1">
+          <button type="button" ng-click="deletePDF($index)" class="col-12 btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

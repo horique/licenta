@@ -1,0 +1,4 @@
+<div ng-if="statusLog && statusLogHeaders[0].lov && statusLogHeaders[1].lov" class="container-fluid-fluid">
+  <h2>Status Log</h2>
+  <table-directive headers="statusLogHeaders" labels="statusLogLabels" info="statusLog" insert="insert(info)" delete="delete(info)" update="update(info)"></table-directive>
+</div>

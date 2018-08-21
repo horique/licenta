@@ -1,0 +1,4 @@
+<div ng-if="roomEquipments && roomEquipmentsHeaders[0].lov && roomEquipmentsHeaders[1].lov && roomEquipmentsHeaders[2].lov" class="container-fluid">
+  <h2>Room Equipments</h2>
+  <table-directive headers="roomEquipmentsHeaders" labels="roomEquipmentsLabels" info="roomEquipments" insert="insert(info)" delete="delete(info)" update="update(info)"></table-directive>
+</div>

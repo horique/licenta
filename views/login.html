@@ -1,0 +1,19 @@
+<h2>Login</h2>
+<form class="col-10 offset-1 p-3 border border-light" name="loginForm" ng-submit="login(user)">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Username</label>
+      <input ng-model="user.username" name="username" type="text" class="form-control" placeholder="Username" required></input>
+      <span ng-show="loginForm.username.$dirty && loginForm.username.$error.required" class="text-danger">Username is required</span>
+    </div>
+    <div class="form-group col-md-6">
+      <label>Password</label>
+      <input ng-model="user.password" name="password" type="password" class="form-control" placeholder="Password" required></input>
+      <span ng-show="loginForm.password.$dirty && loginForm.password.$error.required" class="text-danger">Password is required</span>
+    </div>
+  </div>
+  <button ng-disabled="loginForm.$invalid" type="submit" class="col-2 offset-5 btn btn-primary">Login</button>
+  <div class="text-danger text-center" ng-show="error">
+    <span>Username or password is incorrect</span>
+  </div>
+</form>
