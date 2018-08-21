@@ -33,13 +33,13 @@ switch ($request[0]) {
   case 'generatePDF':
     PDFShift::setApiKey('6d44cda07b944dd78f27861f733ffca8');
     $data = $input->html;
-    $path = 'storage/';
+    $path = '../storage/';
     $result = $conn->query("INSERT INTO `reports`(`path_to_file`, `file_name`, `table_name`)
     VALUES ('" . $path . "', '" . $input->file_name . "', '" . $input->table_name . "')") ;
     if(!$result) {
       echo $conn->error;
     } else {
-      PDFShift::convertTo($data, ['css' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.css'], '../' . $path . $input->file_name);
+      PDFShift::convertTo($data, ['css' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.css'], $path . $input->file_name);
       echo $result;
     }
     break;
