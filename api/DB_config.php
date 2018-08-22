@@ -1,5 +1,5 @@
 <?php
-require_once '../vendor/autoload.php';
+//require_once '../vendor/autoload.php';
 date_default_timezone_set('Europe/Bucharest');
 $servername = "sql7.freemysqlhosting.net";
 $username = "sql7253038";
