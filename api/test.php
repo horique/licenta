@@ -11,5 +11,5 @@ echo ('hello' . $_GET['file']);
 // }
 
 //not necessary
-$conn->close();
+//$conn->close();
 ?>
