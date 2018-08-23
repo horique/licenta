@@ -1,6 +1,6 @@
 <?php
 require_once 'DB_Config.php';
-require_once 'validateJWT.php';
+// require_once 'validateJWT.php';
 
 switch ($request[0]) {
   case 'addEquipmentCategory':
