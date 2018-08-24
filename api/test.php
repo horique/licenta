@@ -1,5 +1,5 @@
 <?php
-require ('DB_Config.php');
+require_once ('DB_Config.php');
 echo ('hello' . $_GET['file']);
 // switch ($request[0]) {
 //   case 'addEquipmentCategory':
