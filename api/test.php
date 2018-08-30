@@ -11,5 +11,11 @@ echo ('hello' . $_GET['file']);
 // }
 
 //not necessary
-//$conn->close();
+//$conn->close();// selects http method
+$method = $_SERVER['REQUEST_METHOD'];
+// fetches url params
+$request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
+// fetches http body (for post requests)
+$input = json_decode(file_get_contents("php://input"));
+echo ($request);
 ?>
