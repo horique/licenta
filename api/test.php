@@ -17,5 +17,5 @@ $method = $_SERVER['REQUEST_METHOD'];
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
 // fetches http body (for post requests)
 $input = json_decode(file_get_contents("php://input"));
-echo ($_SERVER['PATH_INFO']);
+echo ($_SERVER);
 ?>
