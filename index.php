@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
   <head>
+    <base href="app/" target="_blank">
     <!-- Include the core AngularJS library -->
     <script src="js/shared/angular.js"></script>
     <!-- Include the AngularJS libraries -->
