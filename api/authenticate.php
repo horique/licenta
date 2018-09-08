@@ -1,5 +1,28 @@
 <?php
-require_once '../DB_Config.php';
+
+date_default_timezone_set('Europe/Bucharest');
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "licenta";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+mysqli_set_charset($conn,'utf8');
+
+// selects http method
+$method = $_SERVER['REQUEST_METHOD'];
+// fetches url params
+$request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
+// fetches http body (for post requests)
+$input = json_decode(file_get_contents("php://input"));
+
+//require_once 'DB_Config.php';
 use \Firebase\JWT\JWT;
 
 switch ($request[0]) {
