@@ -1,7 +1,7 @@
 app.factory('authenticationService', function($http, $sessionStorage, userService) {
   return {
     login: function(username, password, callback) {
-      return $http.post('api/authenticate/login', {username: username, password: password})
+      return $http.post('api/authenticate.php/login', {username: username, password: password})
       .then(function(response) {
         // login successful if there's a token in the response
         if (response.data.token) {
