@@ -19,6 +19,7 @@ mysqli_set_charset($conn,'utf8');
 $method = $_SERVER['REQUEST_METHOD'];
 // fetches url params
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
+echo json_encode($request, JSON_NUMERIC_CHECK);
 // fetches http body (for post requests)
 $input = json_decode(file_get_contents("php://input"));
 ?>
