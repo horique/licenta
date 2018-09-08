@@ -1,5 +1,5 @@
 <?php
-require_once 'app/api/DB_Config.php';
+require_once '../DB_Config.php';
 use \Firebase\JWT\JWT;
 
 switch ($request[0]) {
